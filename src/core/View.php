@@ -2,15 +2,16 @@
 
 namespace Core;
 
-class View {
+class View
+{
 
     public static function go($view, $variables = [])
     {
-        foreach($variables as $key => $value)
+        foreach ($variables as $key => $value)
             ${$key} = $value;
 
-        $pathView = __ROOT__ . DIRECTORY_SEPARATOR . 'resources' . DIRECTORY_SEPARATOR . 'view/';
+        $path = __ROOT__ . '/resources/view/';
 
-        include $pathView . $view . '.php';
+        include $path . $view . '.php';
     }
 }

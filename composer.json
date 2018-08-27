@@ -1,0 +1,17 @@
+{
+  "name": "joao/php-mvc-basico",
+  "description": "Estrutura MVC simples com PHP",
+  "authors": [
+    {
+      "name": "João Teixeira",
+      "email": "joao.teixeira@ifro.edu.br"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/app/",
+      "Core\\": "src/core/"
+    }
+  },
+  "require": {}
+}

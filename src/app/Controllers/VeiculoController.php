@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controllers;
 
-use Core\View;
-use App\Model\Veiculo;
+use App\Core\View;
+use App\Models\Veiculo;
 
 class VeiculoController {
     
@@ -14,13 +14,13 @@ class VeiculoController {
 
     public function index()
     {
-        $veiculos = Veiculo::getAll();
-
-        View::go('index', compact('veiculos'));
+//        $veiculos = Veiculo::getAll();
+//
+//        View::go('index', compact('veiculos'));
     }
 
     public function go()
     {
-        View::go('go');
+//        View::go('go');
     }
 }

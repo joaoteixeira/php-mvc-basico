@@ -2,15 +2,16 @@
 
 namespace App\Model;
 
-class Veiculo {
+class Veiculo
+{
 
     protected $table = 'veiculos';
 
     protected static $connection;
 
-    public function __construct() 
+    public function __construct()
     {
-        
+
     }
 
     public static function getAll()

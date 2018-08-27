@@ -4,7 +4,8 @@ namespace Core;
 
 use Route;
 
-class Application {
+class Application
+{
 
     protected $contoller;
 
@@ -19,33 +20,21 @@ class Application {
 
     public function run()
     {
-        // var_dump($_SERVER);
         $controller = null;
         $action = null;
-        $path_info = isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : null;
+        $path_info = isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : '/';
 
-        if(!$path_info) {
-            $route = $this->route->geti('/');
-            $this->instanceController($route->controller, $route->action);
-        }
+        $route = $this->route->get($path_info);
+        $this->instanceController($route->controller, $route->action);
 
-
-        if(array_key_exists($path_info, $this->route->get())) {
-            $path = $this->route->get()[$path_info];
-
-            $controller = $path[0];
-            $action = $path[1];
-        }
-
-        $this->instanceController($controller, $action);
     }
-    
+
     private function instanceController($controller, $action)
     {
-        if($controller && $action) {
-            $classe = new \ReflectionClass("\App\Controller\\$controller");
-            $objeto = $classe->newInstance();
-            $objeto->$action();
+        if ($controller && $action) {
+            $class = new \ReflectionClass("\App\Controllers\\{$controller}");
+            $object = $class->newInstance();
+            $object->$action();
         }
     }
 

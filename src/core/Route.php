@@ -2,7 +2,8 @@
 
 namespace Core;
 
-class Route {
+class Route
+{
 
     private $routes = [];
 
@@ -12,26 +13,21 @@ class Route {
 
     public function register($route, $controller, $action)
     {
-        $this->routes[$route] = [ $controller, $action ];
+        $this->routes[$route] = [$controller, $action];
 
         return $this;
     }
 
-    public function get(): array
-    {
-        return $this->rotas;
-    }
-
-    public function geti($route): self
+    public function get($route): self
     {
         $route = $this->routes[$route];
 
-        if($route) {
+        if ($route) {
             $this->action = $route[1];
             $this->controller = $route[0];
         }
 
         return $this;
     }
-    
+
 }
