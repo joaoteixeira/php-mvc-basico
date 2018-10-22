@@ -9,10 +9,9 @@ use Core\Application;
 use Core\Route;
 
 $route = new Route();
-$route->register('/', 'VeiculoController', 'index');
-//$route->register('/cars', 'VeiculoController', 'index');
-//$route->register('/go', 'VeiculoController', 'go');
-//
+$route->register('/', 'HomeController', 'index');
+$route->register('/contatos', 'ContatosController', 'index');
+
 $app = new Application($route);
 
 $app->run();

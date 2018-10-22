@@ -2,10 +2,10 @@
 
 namespace App\Model;
 
-class Veiculo
+class Contato
 {
 
-    protected $table = 'veiculos';
+    protected $table = 'contatos';
 
     protected static $connection;
 
@@ -16,8 +16,8 @@ class Veiculo
 
     public static function getAll()
     {
-        $connection = new \PDO('mysql:host=127.0.0.1;dbname=lojaveiculos', 'root', 'root');
-        $sql = "SELECT * FROM veiculos";
+        $connection = new \PDO('mysql:host=127.0.0.1;dbname=exemplo_bd', 'root', 'root');
+        $sql = "SELECT * FROM contatos";
         $consulta = $connection->prepare($sql);
         $resultado = $consulta->execute();
 
