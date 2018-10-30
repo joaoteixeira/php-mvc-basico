@@ -13,7 +13,7 @@ class View
 
     public static function error404()
     {
-        self::_include('error/404');
+        self::_include('errors/404');
     }
 
     private static function _include($view, $variables = [])
