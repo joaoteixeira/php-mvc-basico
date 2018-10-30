@@ -4,30 +4,28 @@ namespace Core;
 
 class Route
 {
-
-    private $routes = [];
-
-    public $controller;
-
-    public $action;
-
-    public function register($route, $controller, $action)
+    public static function register($route, $controller, $action)
     {
-        $this->routes[$route] = [$controller, $action];
-
-        return $this;
+        $_SESSION['app_routes'][$route] = ['controller' => $controller, 'action' => $action];
     }
 
-    public function get($route): self
+    public static function get($route)
     {
-        $route = $this->routes[$route];
+        if(isset($_SESSION['app_routes'][$route]))
+          return (object) $_SESSION['app_routes'][$route];
 
-        if ($route) {
-            $this->action = $route[1];
-            $this->controller = $route[0];
-        }
+        View::error404();
+    }
 
-        return $this;
+    public static function redirect($route)
+    {
+      $router = self::get($route);
+
+      if(!$router)
+        View::error404();
+
+      header("Location: http://{$_SERVER['HTTP_HOST']}{$route}");
+
     }
 
 }

@@ -2,7 +2,7 @@
 
 namespace Core;
 
-use Route;
+use Core\Route;
 
 class Application
 {
@@ -13,20 +13,22 @@ class Application
 
     protected $route;
 
-    public function __construct($route)
+    public function __construct()
     {
-        $this->route = $route;
+      session_start();
+      $this->includeFiles();
     }
 
     public function run()
     {
-        $controller = null;
-        $action = null;
-        $path_info = isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : '/';
+      $path_info = isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : '/';
 
-        $route = $this->route->get($path_info);
-        $this->instanceController($route->controller, $route->action);
+      $route = Route::get($path_info);
+      $this->instanceController($route->controller, $route->action);
+    }
 
+    public function call(Route $router){
+      $this->instanceController($router->controller, $router->action);
     }
 
     private function instanceController($controller, $action)
@@ -38,9 +40,8 @@ class Application
         }
     }
 
-    // private function setController($path)
-    // {
-    //     $this->controller = $this->route->get()['\\'][0];
-    //     $this->action = $this->route->get()['\\'][0];
-    // }
+    private function includeFiles()
+    {
+        include('Alias.php');
+    }
 }
