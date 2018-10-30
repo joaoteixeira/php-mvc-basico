@@ -8,6 +8,6 @@ class HomeController {
 
     public function index()
     {
-        View::go('index');
+        View::go('home');
     }
 }
